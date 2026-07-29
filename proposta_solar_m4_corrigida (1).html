@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Comercial — Sistema Solar Fotovoltaico | M4</title>
+  <style>
+    :root {
+      --navy: #06152a;
+      --navy-2: #0b2846;
+      --blue: #087fbd;
+      --cyan: #10a8d8;
+      --cyan-soft: #dff6fd;
+      --ice: #f3f9fc;
+      --line: #d7e4ec;
+      --ink: #112033;
+      --muted: #5d6d7d;
+      --white: #ffffff;
+      --success: #0a9a7a;
+      --warning: #e6a23c;
+      --deficit: #d8e1e8;
+      --shadow: 0 18px 48px rgba(4, 28, 52, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #eaf2f7;
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    .toolbar {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 50;
+    }
+    .print-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: var(--navy);
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(6, 21, 42, .25);
+    }
+    .print-btn:hover { transform: translateY(-1px); }
+
+    .document {
+      width: min(1120px, calc(100% - 28px));
+      margin: 24px auto 52px;
+      background: var(--white);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      padding: 34px 44px 42px;
+      color: white;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(16,168,216,.32), transparent 24%),
+        linear-gradient(120deg, var(--navy) 0%, var(--navy-2) 58%, #0a4f78 100%);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      right: -210px;
+      top: -210px;
+      box-shadow: 0 0 0 42px rgba(255,255,255,.03), 0 0 0 90px rgba(255,255,255,.025);
+    }
+    .brand-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+    .logo-box {
+      width: 230px;
+      background: white;
+      border-radius: 14px;
+      padding: 10px 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+    }
+    .logo-box img { width: 100%; display: block; }
+    .proposal-tag {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #a8e7f8;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.5fr .85fr;
+      gap: 28px;
+      align-items: end;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.02;
+      letter-spacing: -1.9px;
+    }
+    .hero p {
+      max-width: 690px;
+      margin: 0;
+      color: #d8eaf4;
+      font-size: 17px;
+    }
+    .hero-price {
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(4px);
+    }
+    .hero-price small {
+      display: block;
+      margin-bottom: 4px;
+      color: #b7d8e8;
+      font-weight: 700;
+    }
+    .hero-price strong {
+      display: block;
+      font-size: 33px;
+      letter-spacing: -.8px;
+    }
+    .hero-price span {
+      display: block;
+      margin-top: 7px;
+      font-size: 13px;
+      color: #d7edf6;
+    }
+
+    main { padding: 34px 38px 46px; }
+    section { margin-top: 34px; }
+    section:first-child { margin-top: 0; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .eyebrow {
+      color: var(--blue);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -.7px;
+      color: var(--navy);
+    }
+    .section-note {
+      max-width: 560px;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .metric {
+      position: relative;
+      min-height: 128px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #fff, #f7fbfd);
+      overflow: hidden;
+    }
+    .metric::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 5px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+    }
+    .metric .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .65px;
+    }
+    .metric .value {
+      display: block;
+      margin-top: 9px;
+      font-size: 27px;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -.7px;
+    }
+    .metric .sub {
+      display: block;
+      margin-top: 5px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .metric.highlight {
+      border-color: #9eddf0;
+      background: linear-gradient(145deg, #eafaff, #ffffff);
+    }
+    .metric.highlight .value { color: var(--blue); }
+
+    .charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .chart-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      background: white;
+    }
+    .chart-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+    .chart-sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .chart-content {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .donut {
+      width: 182px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: relative;
+      margin: auto;
+    }
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 29px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 1px #edf2f5;
+    }
+    .donut-center {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      pointer-events: none;
+    }
+    .donut-center strong { font-size: 25px; color: var(--navy); line-height: 1; }
+    .donut-center span { margin-top: 5px; font-size: 11px; color: var(--muted); font-weight: 800; text-transform: uppercase; }
+    .production-donut {
+      background: conic-gradient(var(--cyan) 0 54.20%, var(--deficit) 54.20% 100%);
+    }
+    .credit-donut {
+      background: conic-gradient(
+        #21b5df 0 5%,
+        #087fbd 5% 50%,
+        #67d5ee 50% 70%,
+        #0b2846 70% 100%
+      );
+    }
+    .legend { display: grid; gap: 11px; }
+    .legend-item {
+      display: grid;
+      grid-template-columns: 11px 1fr auto;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+    }
+    .swatch { width: 11px; height: 11px; border-radius: 3px; }
+    .legend-item b { color: var(--navy); }
+    .legend-item .amount { color: var(--muted); white-space: nowrap; }
+
+    .table-wrap {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    thead th {
+      padding: 13px 12px;
+      background: var(--navy);
+      color: white;
+      text-align: right;
+      font-size: 12px;
+      line-height: 1.25;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+    thead th:first-child { text-align: left; }
+    tbody td {
+      padding: 13px 12px;
+      border-bottom: 1px solid #e8eef2;
+      text-align: right;
+      vertical-align: middle;
+    }
+    tbody td:first-child { text-align: left; font-weight: 800; color: var(--navy); }
+    tbody tr:nth-child(even) { background: #f8fbfd; }
+    tbody tr:last-child td { border-bottom: 0; }
+    .money-after { color: var(--blue); font-weight: 900; }
+    .saving { color: var(--success); font-weight: 900; }
+    tfoot td {
+      padding: 15px 12px;
+      background: var(--cyan-soft);
+      border-top: 2px solid #9fddee;
+      text-align: right;
+      font-weight: 900;
+      color: var(--navy);
+    }
+    tfoot td:first-child { text-align: left; }
+
+    .savings-band {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .big-saving {
+      padding: 24px;
+      border-radius: 18px;
+      background: linear-gradient(125deg, var(--blue), var(--cyan));
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .saving-block small { display: block; opacity: .84; font-weight: 700; }
+    .saving-block strong { display: block; margin-top: 5px; font-size: 31px; letter-spacing: -.8px; }
+    .saving-block + .saving-block { border-left: 1px solid rgba(255,255,255,.36); padding-left: 20px; }
+    .explain-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fbfdfe;
+    }
+    .explain-card strong { color: var(--navy); }
+    .explain-card p { margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+
+    .budget-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+    }
+    .budget-card, .scope-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      background: white;
+    }
+    .budget-price {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 17px;
+      border-bottom: 1px solid var(--line);
+    }
+    .budget-price span { color: var(--muted); font-weight: 700; }
+    .budget-price strong { color: var(--navy); font-size: 33px; letter-spacing: -.8px; }
+    .budget-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .detail {
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--ice);
+    }
+    .detail small { display: block; color: var(--muted); font-weight: 700; }
+    .detail b { display: block; margin-top: 3px; color: var(--navy); }
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 14px;
+    }
+    .scope-list li {
+      position: relative;
+      padding-left: 23px;
+      color: #33465a;
+      font-size: 14px;
+    }
+    .scope-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      background: var(--cyan-soft);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 16px 18px;
+      border-left: 5px solid var(--cyan);
+      border-radius: 0 12px 12px 0;
+      background: #f1f9fc;
+      color: #42576b;
+      font-size: 13px;
+    }
+    .notice b { color: var(--navy); }
+
+    footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 22px 38px;
+      background: var(--navy);
+      color: #cbdbe7;
+      font-size: 13px;
+    }
+    footer strong { color: white; }
+    .footer-brand { color: #a6e5f7; font-weight: 900; letter-spacing: .7px; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .budget-grid, .savings-band { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .charts { grid-template-columns: 1fr; }
+      .chart-content { grid-template-columns: 170px 1fr; }
+      .hero-price { max-width: 440px; }
+      .table-wrap { overflow-x: auto; }
+      table { min-width: 850px; }
+    }
+    @media (max-width: 580px) {
+      .document { width: 100%; margin: 0; border-radius: 0; }
+      .hero, main { padding-left: 20px; padding-right: 20px; }
+      .brand-row { align-items: flex-start; flex-direction: column; }
+      .logo-box { width: 205px; }
+      .metrics { grid-template-columns: 1fr; }
+      .chart-content { grid-template-columns: 1fr; }
+      .big-saving { grid-template-columns: 1fr; }
+      .saving-block + .saving-block { border-left: 0; border-top: 1px solid rgba(255,255,255,.36); padding-left: 0; padding-top: 16px; }
+      .budget-details, .scope-list { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; }
+    }
+
+    @page { size: A4; margin: 12mm; }
+    @media print {
+      body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .document { width: 100%; margin: 0; box-shadow: none; border-radius: 0; }
+      .toolbar { display: none; }
+      .hero { padding: 24px 28px 28px; }
+      main { padding: 26px 26px 30px; }
+      section { break-inside: avoid; }
+      .charts, .table-wrap, .savings-band, .budget-grid { break-inside: avoid; }
+      .metric { min-height: 108px; }
+      footer { padding: 18px 26px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="print-btn" onclick="window.print()">Imprimir / Salvar em PDF</button>
+  </div>
+
+  <article class="document">
+    <header class="hero">
+      <div class="brand-row">
+        <div class="logo-box">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCADZAfoDASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAEEAwUGAv/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/9oADAMBAAIQAxAAAALegAAEkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAEkAAA8eKNfr5t4OXpHlPSj43z2LXyX1CxLnGeiJq3PvPptrvjkHP0APHvj06ueIHdTy3UgKA8TxKdo4cd165/oFTAAmJgY9PoE7dxEndwKAAJIlAAABjwW8VxlMM15qzsd8seVGOpqbm+dqpbZ3Qv4q2ud6JY61LeLLchNgOI7bhUCx2nF7tegEoGo5u3UsBNv0nK9XLAVMCadrkEqwaiYmO6E0AAAmJIAAJIw5q1zZ1lrDrnfwZ/GOmoy1bfq8VX3tfGN05wWLnaU7ccPXjy0LdyyYc83CYmpgMHF9dyNgIyYx3PrU7aaUb3MJqxYBc6/iu1lBRSNbo5iyfW41xVmJTuhNAAJiRAASjyejAmdhHiPHvfPNrb+p3ht9Ts7nVWK2XfHYa7Y6vO9nb1uy4+ihsNZdsysXnHTOQshdXzHQ89Ys1twadsNeXOv4TroscVvdDS1V6Q5t78JPdcJ20uWYL54/YaaxardeWuP7HjoqzE2d0TNQBMBMSISQDzy3V6fpzi/NnN1NyzBgq3dbrO48eq2N6faat6vHu/WHXcO/vLSsduG5iaHm9fm5jy6zRtZ5lr6ne6/fLNbx5Ofbn9JtNW032h6Uyct3XFmHa6ombCGTtdD0MvGVr1GnYcf1ZsNdseSiiNTe77jpzew46a1eZgnduP2Uu+CpQJiRCSAASQMWXCmWpbx2UdnrbWs5IzRjVbHdnU8RkjOvOrnZ9ObxDG8wmgBJyFLPgsdXynYFvQ7+tHGCwbA6OzEzXLazcaex03M9AbvkOv0MaJtVaptYNW2muTwKbWL8u4JlIkARIgACdM1jca+6mq+X15TNqNxqNTbNXBtWqk2tWpVudjdicbw66/kucjzSmr7U7awYs74qC5dtxXdSpQvL0e3JxHSbOBMF0Wh6PnLG60u0OoglSESEcb2XGpWmJs7qYTUoBMCYEkAAGkndN48PbGvHsJrWK5rh25ESM2HLG0mHLt5j2TxS2CzT7gsYczO+cjpCc/0MSsSEJEJgTApajpCc5Z3UkSLCRCRGh30nNujImCiREgCJCAEwAAAK1mnZQV47cbSsLOSlYN2OHcAVksqWczIxmVpdsZGuuGWddaMzBnJihZMzzhLCfB6V7AmKdXJ814tRgynuPHsK9gK82WBNARIAIkQABMASQCnqeir7xpZyWenPFuYnj1TCamAabc6qy5TtYE2Ouz4F936N6NTtqFutDsfNmynZixLhs6vYFLz6WbSldpJi2Wt2VmKhdq2XatyjLGeFmXLU9Z1rtvXyazSyZWpcmJ49gAAIAAAAmJESIAAAAAAAATAAATAJIAJIASEJBATATAJIkAAETAAlBIIJITBMJIAJIAAAAmBKACECUSAApMBMCYkAEEgIkECQAAIlITB//9oADAMBAAIAAwAAACHzzzjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzzzzzzzzyzzzzzzzzzzzzzjzzwPz3zjTzzHzzmN3zzU/yzxRtNzzziTzzxr76Xwy72rzzcOTzwANvyxGEPzzzyjzzjmd8F041NjRygNNT0MN/wA4CeD888oc8M9+x4Q2Zft694oWiXYUrnsAYPD48soY8lHlxw07ovAUTTAQIDjTCQ7hf4H78koY88ErF9HImUE884qElLTIoA7CWPF04IAQ88rwPk0wD9H01sjbkDHsAUcggvDsM0sE88tNdeOuesN+8sfIgw0s9Lgwwofs4QAg8088883m9c8939/zr9b9x2guWd+1AAgAQ88s488/fsc4rkG0sUYM5FNxTrjdoAAA8888oQ8888888808804848wYE004gAAU8kA40Y848888sMBr51800oAMAIEgAAJ1/9oADAMBAAIAAwAAABChwjiBzyyhDCzCATzhTiwDwABSzBSwwAzziRSyjzzwBzyzyyQwRSRDDgQjyyjAzBxzzwjDsWSehiXzxvJOwS954xxSCpTzziTDDyn1OKBAi9Tyz4PGDwoNEyxPz8Dyzyiwwhg/5Q/pdjnRiUMfr+sdbyxRz8SxChzwzflvCmdkoIcHSljh4X7s6yUJL1BSyhjxrUtasULwX1vAQ6NXWOBDnF25e4jSShjzwQisqNlEy+xziC3cs2h66nCT/gnggBBjyPIVDfJi35tSDtKALiw7pyCDrUQzSwTwDw8c+my8j7z3x2qDDSz8GDDDDUzhACDzTzTy4JIzzzvXPpCTNzfP2Cdde2MACBBDzyzjzeH6xw7m5c2f468UDtPFyemgABTyyyShCQTxzzTzzBzxDjzhTBgTTTiABRTyQjjRjzBjTTyQjJQP3zSCggQAwSARAvf/xAA3EQACAgEDAgIFCwMFAAAAAAABAgADEQQSMRAhE0EgMFFhoQUUFTJScYGRwdHhIiNTJEBQYLH/2gAIAQIBAT8A/wCh1fJ6PRvJ7noAScCDRWYy5C/eZ81Q8WCWaSxBuxke0d+lNfiWBM8zW6RKAGU9QMzZCMdQMzZD6AXMKY9SLXFRUHtEUuwVeTHsXTDZX3bzP6CMxY5JyZbobKq/EMrueo5Ux1TUKbKxhhyP1EBOcy+xnI3HPYdU56OPPqowOjc9VGT0PHqVBZSAJpwaa2uI78D8ZWQHBYZEvXT1jxLAJ9J0t/S6nEuShNOzKoxiU2GpwwmooZbSFHbylgw34D/zqnTGYYBk9X56gYEBycQ8emB7IFycTC+2Ef6Tt9r9J8m1UMMvjdma/B1Fav8AVl6Vmohh2xPk0b9OVbjM1qVJbiriasDK5PfAgVScAwA9E4jdhAciOPOIPOMcCAx+iDzjHETmHj0/k+6qpj4nnNRbW1pZBGuRq1QIMjz9s04FiPT2GeO/mPxlKFrAucHM1OlS9Nrc+Uq0ttthpduyy+pV0zIhwAJp6jbYEmpcPYzAAj7/AC/OPejKoVcEfGfJ+oprBD9jNQ6PazJxF4j8RD5QjMxiOcmLxHijJ6FSTFUg94RmFSPUJ9YRG2Hf5gzUqtg+cV+fI9hgtcNuycw6q0ljnu3M3NjbntBjTVYP1m+A/mYAJHu9BeI8BwehOB0XiPxFODNwm4QEHjozAj0/mNvheLKmCOGIziOwYEgYyf3miO5jUeGHx8p9H6j7PxE+j9R9n4iUaC1bAbB2H3S6w2WFz5yu0V7srnIlVD2uEUd5qNM9DbW6DtH6ByIWJ6JxGHb0E5h49R8+t8LwvKbjMkyrG8buPdMUf42+P7zbR9hvjLFo2HCN8em4yq96nDqZqNS97At5dNxhOfRBIhYn0AcQsT6ugkWKQce+Fn58cfkP3m+z/MPyH7y1n2H+8PyHUAk4EKsDgjvACTgR6yuAYyMoyRCjAZImDCjAZImDjPlACTgR0ZDhhiV02WZ2LmJW7ttUZMat0bYwwYQVJB5jVsoDEdjxPAt2eJtOPb6vTaiqsbbEB98e7RKu4AH8JfatjZVQo93WkgNkxMCzMrwtgzLOY5BbAlrqQdsLLlfdLB3JzzNyBSmfKaUqLQxPHcff5TWbCQUP8e7+ZpCnh7bCNucnvgj3iUFWpesNgkjntkQPWbql3dl5P45/iNUGuw7Duc5zNXdVbV/QeD2B9mPL8pZfX4RVMbgoGc8g8ge//lMTH+w//8QANxEAAgIBAgMEBwcDBQAAAAAAAQIAAxEEEhAhMQUTQVEUICIwYXGhMlKBkbHB4RUjU0BCUGDR/9oACAEDAQE/AP8Aoeo7Ytr1XdBfZBx8eDMFGScCN2pVnbUC5+A/ef1G0czQ2JR2lp7W2Zw3keR4au/uKWtxnAnZPalmrdksHTny4k4m6A54k4m4eqWxA3uXoqa9XKjOD+0ssWtC7dBEpfXHvbuSeC+fxMRFQbVGBNP2rVfeaVHnz88TUaWrULtsGf1lVtmisFNxyh+y3l8DGAYYM0dFdSnYoGSf14twU+HFjngvTiTgcB19y7BXBY+f7TVsNRalCnl1PyEvVjUyocHE0rau0mmljz+M/omoT2q3G4eU09mqs1iK7EMD4zV6cailqz4/rNFrEehTYwDDkfmJpyCmR5n9eLcRCcDivTiTmEcoOvuGOBmZbygz6bkj/b+87Yu1KHamQmPD/wBnZmV0lr1/b/iaWy4XqUJ3Eztr2NYHrODgfnOyrb7aN1/XP0nZxYK+1cjcfGNY6jJXl84SB14NB1hEU+EYxRwXgx8IozG6QdfX1tVlgGyUVutYVzFpZXZy3IzUnY6Xc+XX5GXuFpZiMjE0mrfTPuXp4iXauiipdRWg3NNPcz6xbbBkkzV3iiln/L5zRVGqlUJIPy8T+Er0lis5ZyQ3T4TtfR6q4qU9oD8Joq7K9OqWH2gI3WLGEBxwUcoesSE4HAMBGIMEDD3DfZMdd67fAiaZjWe4fw6fEQ0VldhUYnoVOFBHJek7tN27AzGDau7I+wh/M/xNxYKT5+oesWHgOZ4N1ixhkTaZtMIPBQc+v6XX3myWDehUHGYilcAnPKawYUWjqpnp9H3voZ6fR979ZqNdW1ZFZ5mUVCqsIPCWVGwLh8YMv1FdKF2PKaXV16lSyeHFeBWBccG6xevqN0g9x6JX3m+YEwBLc7Dt6zN33l+kzd95fpEN+8ZZfpw2KfCX6au5CjCaTRpplKp48NomMerjMwB6uB7u0AoQRmbU/wARhRP8R/OVou8f2jxJAGTNwIzM4GYHB5wOp5AwMDyBmRAwJxMjOISAMmJYrjKnMsuSv7ZxHsRBuY4EW1GXcp5QEMMiLYrEqDzE7+vfs3c/d30WP7SNiLVqmbbkj8ZTW1a4Zs8bQSMCNnZiNzTlE6RBgZiKQRumDgxDyxiYYtumr3GoqB16/KaLeAQ4/n4zUhu83IDuxjpkH5y4MtquVyAPDwM2OKbGxzboPpFsIpyqnIHlNLVZVb7Q6jw88yumzvAzdCxPy8vw/wCUzM/6D//EAEgQAAEDAgIFBwUNBwQDAQAAAAECAwQAEQUSEBMhMVEUICIyQVNxBhVCYZIjJDA0NUBSVGJygaGiFjNjc5Gx0URQgMFDguHw/9oACAEBAAE/Av8AgM46hlN1m1NSmnVWSdvA/DEhIud1CU0VWvzy62k2U4kH1muUM9837QrlDPfN+0KStC+ooK8Dz1OtoNlOIB9ZrlDPfN+0K5Qz3zftCkuIX1FBXgfgN1a9nvW/arXs9637Va9nvW/a+Y4hflO3dbZTZOsTl335i1pbF1GwpeIdjaL+NXmu8U/lXJZR3ufqrUy0blX/ABrlb7X7xFNSm3dm48DzJxOqHjt0R78nRfhzsTVnxKQft6cElaiaEHqO9H8ec44lppTiuqkXNPOl95bqt6jfT5OK90fT6gfgMdn2HJGzt/8AJ/jSN4+YusIeFliokdtKQ5a6tumTKSwLb18KbjuyjrHjZNNsttdRPMIBG2noSVbW+ieFMyVtK1b39a36FJChZQuKTFb16h2DnyFZpLquKzpBINxvqHI5VEbd4jb483H5OrjJYG9zf4czyeVactPFvn4hMTCjFfpnYgeulKUtRUo3J2k6RvHzKN+4Hif76JL4jtZu3sqLHLyte7t4evmOylqdVZZA7KhPFxshRuRpeZS8n19hqM6WnNS5+GlPxhzwHOWcqFK4C9Hab8zyflWWuMrcrpJ5uJSeVTnHPR3J8OZgarYoj1gjnKUEJKlGyRtJrEJhmySv0BsQPVzB1h8yjfFx+P8AfQ578nZfQTQ2CwqW4ppgqTvpEhxCrhZpc11YtsT4aG3FNG6DY0qa8tNr28KjPKQ6BckHs0Tm7o1g3jfUZ3Wsg9u46E/GHPAc6YrJBfVwQeaw8Y76HU70m9NrDraVp6qhcacWk8mgLsemvop5uFqy4mx963Oxyfc8kbOwdc/9aACTYbTTramXVNq6ydh0DrD5ky8htrKom9z2eunZSA0og7bbNlYYjoKXxNtDoSppSVbraIsMujOvYj+9aiOgdRP405CZWOiMp9VONqaXlVUBILxJ3gbNBSFJIPbURwMrWhVcoR6/ZNNnM8tQvbZzsXVlwt/1i3OwGTrIqmTvbOzw045J10zVDqtbPx5sRWSYyrgsc3E5ohRrj94rYgUSVEk7SdGBwLnlbg2Dqf5rEvlKR9/QOsPmeIG0Nf4Vh/xRNPOhlorNPzlupKQMoNMpzvJRxNSHdQxceApSio3UbmokhTboST0D2VPQCzn7U024Wl5k76jzdasIUmx0N7MTPwGPKth1vpLGmDF5W8pvtyEjxq1tGGSeTT21eieirRKeEaM48fRFKUVKKjvO06MPi8slhv0RtVRFjoSbKBoG4B46XHEtNqcWbJSLmpstUySp1W70RwGjD4hmyg36A2qPqpKUoQEJFkjYKxL5Skff0DePhlLQjrKA8TofuXGkZlJBJvbwrk47132q1H8R32qlse9VnOs24qrDjeGPUaltKejlKd9LZca66CKjrySGz66nNFcfZ6Jvojtl19IHianm0YjidENlzXJWU2A46EDW4ivae3dWp+257Vaj+I57VOI1YBC19YdujMAbEjT5RK97sp4qvp8nk++nVcEVjEbUT1EdVzpDThcnlUBCieknoqrygk/u4w+8rTgMfVxS8obXDs8KeGV9xPBR0xlZorKuKBpxyfrXOTNnoJ63rOhIKlBIFyd1YdCEKME+mdqzoxL5Skff0DePhVqyNqVwF6cWp5ZWs3JrC5SkJU2oLWkbRlF7VrdbIZs24LE3Kk27KxKU83ICEKKE2v40y/IUyhRYuSPpWpZeW2pJj7xbrisKXlW4yd+/Q6kLaUlW62iHNCwG3D0+w8aVDYWblFvCglqMgkWQKkyS+59kbqw8BTxJ3gbNC1attS+FQs91uBGb8azu9z+qpMp5L1upbspZUqOhVtuwkCnZNmlEIWD6xVyTc76gOKW2pKvR0eUSvdmEcEk6fJxGyQvwFY3H10ErA6TW38NOBy9RJU2s2QsfmKlvmVKcePpHZ4aGGi++hpO9RtSEJbbShPVSLCp6cmISB9s6cMVmw2Ofs20YtP5HHyoPuq93q9enA8P/ANW4P5Y/704l8pSPv6BvHwu+nsGVn9xWnLwV2VChiIgi+ZR3nQUpVvSD404vVtKX9EXrPI7pHt//ACpGsizEyCkC57DekqC0hQ3GsQKxF6O70vDRurD3VOMHMb2NPurddUSTa+waImblKMm//rRiD1gGRvO+mEvNNBAbT7VIcUpZQtNiBfYaKUk7QDoUnOkpO40rDl5uisW9dMMhlvKPxOjHlXxG30UDT5PptBWriulAKSQrcalMGNJcZPonm+T8bM4uSRsT0U+OjF05cUe9e38tOCKzYYj1EjRi6irE3rncbDSMSmJSEpkKAG6vOk36yuvOc36yulrU4srWbqO86fOc36yusFmSH5hQ68pacl7H5hK+JvfcNDcKkLjyGCjP4G1YbJt73X/61vpMdlBulsA0/GbfHSG3jUOOqOlQUQbnspiBlWpTtlcBSm0LTlUkEcKbabZHQTanHEtNlatwqOUuSS88aQ4lYuk3ofG1fcHPxdWbFH/UbacETbC2/WSdHlDG2tyQPsq5sGPyWG212gbfHRjybYkTxQNPk+q8BQ4OaMV+VJH3vgvJ/wCUFfyz8wl/E3vuGh1B4VF+KtfdrE43+ob6yetUKTyljN6Q2K577hmygy31BTaEtNhCdwpjrPffofG1fcHPmqzzn1cVnThicuGRx9m+iaxymI412kbPGrW04NG5RPST1W+kdPlEn300rijT5On3J9PrB0TsHkyJrrqCjKo32mvMEzi17VeYJnFr2q8wTOLXtV5gmcWvarzBM4t+1TrZZdW2rrJNjp8wzP4ftVhWFPw5JddKLZbbD8wxV5xpgJTuXsUaw95x6Jdzfe1+NRPijX3atcWpj3liZa9BWz/HOnvamMbdZWwVhzGrYz+kv+2hg9J7+ZTcl5U4es2I9XOOzbSjmWTxOmMnLFaTwQNOLQnG56y22ooX0tgrk7/cueya5M/3Lns1gkXk8LMpNluG+3hp8ox8XV4jT5Oq93eTxSD8BiHyjI/mHQOsPh5+JOofU0ycoTvNQMScLobfVcH0j2Vrmu8R7VFxkixWgjxrWtWsFo/rUT4o193Ri6bONOjwrzz/AAf1V55Hc/qrzz/A/VXnn+D+qvPI7n9VSZZmLbGXL2WvSRlSE9g0MqQlb2ZQHunaaztZr5kX43rWI+mn+tTZhbshoi53mo81xLgDisyTx0yV5IryuCDpSMygONDYLfA+UKferKuC9OAqtiNuKD8BiHyjI/mHQnePh8Rw93XqdaTnSrbYdlYfhzmuDj6LJHYe2tQz3SPZrUNd0j2a1DPdI9mt2waJr7cdm7iM9zsTXnGP9TTXnGP9TTXnKN9TTXnGP9TTQxCP9TTUedHW+lPJwgncdJabJuUJJ8K1LXdo/pWqb7tP9Kmwyuy2kj1gVHhOrcGdOVI46ZbSn4jrSSAVJttr9nZHetfnX7PSO9a/OmcAfQ8hSnW7BQJ+CxOGqdG1aCAoKvtr9nZPetfnX7PSO9a/OoGDvxZiHlONlI32+AlYE+9KddS43Zar7a/Z6R3rX51+z0i/71r8/m0xthbHvg2QO2tVhXeqrV4X3yq1OF9+utVhnfqrV4Z3yqjN4fr06twqX2A/71OimUxlCrEG9eZnu9brzM93rdeZ3u9RXmd7vUV5me71FMYUtt9C1OJsk32f71iLbzsXKzvvtA7a5DM7ldcimdyuuQzO5XXIZncrrkUzuV1EiS0SUKylIvtJPOlzWoeXWZulusKYxNmQ8GkJcueKakyW4rOscvbdspJzICh2i9SH0xmS6u+UcK5fHcl65ZfUB1EZdgp95MdkurvlHCvPcX6Lvs1HkJktaxANvXTmLx2nVNkOEpNjYVGlNSkZ2lX41Jltxi2F5rrNhbQ7i8VpeTpLI35BUeU1KRmaVfiOFLWltClrNkpFzUWY1MSot5ujvvoccS0grWbAUzMbeXkAUk7xmG/QTYXO6vObGa3TtxtSVBSQobjT05llWU3UrgmmJjUg2TcK4GnFhtsrO4C9NOB5sOJvY8dD8xqOsIVe54aH5rcdeRYVe19lMy2pBskm/A/NcQekMtAsJvxNr2rznL7z9IrzpL739IrzpL7z9IqLMnPPJ9NF9vR5+JLV51jhCNYpAzZaivPPZtbH1Vt23fWObWmGx6a6AsLVji7Qkp+kuokiQS20uEUJtbMTW+o/umPSD9BNq7KhThG17qmlr1it43VhMdbaHHljLrTcJ9VT7uYvDa4bf/39KxR1TWHuFOwno1hkdDEJuwF1DMTTbLbWbVoCc202rFXdY43CSq2c3WeAqBkZxWQygjIRdNtGIlJbDO0uKOwCmX03Ml89JHQygUDcXqS2XY60J3kU0+YyAxJY6HGnl5I61p7E3FYa0kMa07VqO+pIAxJjJ1jvrEVZYS/XsqIMsVofZpaghBUrcKWnXMPSFkZydgv2VHXnjtq4innQnFSvKVZB2VGzSJhk5cqBsHzaRCZkjpp6X0hvpzB5AV0ClSfG1RcICelIIUfojdQASLAWHPfjzfOSpLKEHZYZjUUzCVcqS2kejkrEY0l99hbKUkN7dp7ajKnl33yhpKLejWKRX5JZ1KQchubmmFYiXhr22g3220QIrrUmS68ANYdm2ngosrCOtlNqjYeoYUuM6Omq5/xWHtvNREtviyk7Bt7K5K6cY5SQNWEWG2pUcSo6mjsv28KaRisZvUIS2pI3LJ3VGQ80wEvOaxzjTOGa9116cm6lHYkK3UMOMfEmnYyLM26W3Q+y+mWJDICtlrGjFkKeEgoRmv1L6JSHlt+4Lyqv/WlszJWVDwShAO21KQFN5PRItSGZkW6Gsq0dl6jxVB0vvqzOf2qey4+0lDYvt201y3MkLQ2EdtTmnnmw21uJ6RvRw1jVnKnpW2G9Qm1tRghwbRUeOtMt91wbFbqhsux3HEke5E3Tt/4E/wD/xAAsEAACAQIDBwUBAQEBAQAAAAABEQAhMRBBUSBhcZGh0fAwgbHh8cFAUGBw/9oACAEBAAE/If8AgcP/ALNTBG2+MV3RP1jggAXJlWPEim2vDXAQcQkhpIYXUdvc2IIOOSQkkMLqPoEgCSQAKkmfnZ+Vgcq3D/hoBkYA0UpXFN++g20WvZLsAHtF11Uui8D/ADHE4bwpSh2MEXY4W8O04gBypizSqPgfNdoyqK9iX6eUWCNX1x7+hmBVIaZQsOuEHo++2LsKxFxL4QAJyqscxC3dHkktv4QQgDfnsEQEEaGMPjUS0oUa47wFGCwc8CcQmUdIJCCATrEtreQeuIERAWDBhb+1C+yxdZ8H72N4R0I26bTxx2CHOFsZnHroP8Gc85qwKLjoOpltYlgfFMWobHVACqQiwu50xWTQYF1INbhx8Dv2t6hBM1V2He+QFxy+MMsUQWJ9psIn5z/m0O4CxkJV+OANh1kH+ATrfkwYQ6HsLwAACAFBBo1FA6StszZbi+IDdJbBNKQtZuMPInRKuFEv4oz7OZh4HftecNbPzXNuhY2ATccXxHUr9Nl116gW1v8AALM4AsZIUAM4ttlDXDrIP8AgYIFgfVD66128WffAXVBPdgwJyALwBAXDRoR7IbiRGes0FEwtBAjCHFPIE1E8fYiqMAAkEbXABzEbTlvnn7eNZaXMv22d4T67JUUfuPaGKJDJOeG60CczHUMOs/x+6A6zmyT1gU2BkM4BtRHMzRoQgzhrZhOYTMwiklRLKDGY6GBx6Osqa1iDTAFRmT8YPa4PHyf5iYf8MW6wkSIRwZJR/YOGuRjechzhHWck1OByQpE24RgDlgiMiDN1h41ueEpcWdEwDJjgKAmgUDITqGHXCD0VsFBV7UI3E0ww0TUYju4v3YMBFA0Qi8GAM4QQrcEDWc4MikERsK45CzQbsMoY8AQecCAgcaPXODuloABqJbopkSBhoorvxwhAR0eKtW8g+8Wbocz9RU1zrPrjUI50PqLBPlQfOCn87M/c3ALrjvsPTHMK1jk+2BURSAZmUen3xpwEtOqYddB6Lxpy3JCla4kxe2AsfSOt5hELoHoAYRU4g1b2ylHKaAlC2BvFDhetkzpGor4FCeayuAN2UDxmTrHIUpD/AGVrWgwGQsLg11Gjo3yrZyyppUEFYRh1jFb1iIwKGiISBCSuTDkEsETocPKAT9Y+7fnMvaS/LzdiGpps5VPhzcgDTIOWFv58G+CXQANwnHG5l48LPJTDdE91nBLqcHHLUJDl51DDrhBb0eWJABEU0jMtTRjjccP6DBZSLI1Bnw2oM1AUO/vwYorkodYctiYMMFuwLq0IgUMSgTpDkwFoCVQKKNjLJur8oZcbVDdlKbjUn8QRUZcAwaJQWJFsABNBEQKq67o3DN9TBfoHycd/X0AgcmJEaiaRCDqMumzbaPcX6fOCnqHMGPg+cMZ8UbgLEWCkAVBP1RP3YfyayZnAFGH70RvoN4Y9B+h5DSFyotR3coeUfas26iEAEQxDs6ZqI9vQbiVXADcghqtuvebwghFgT33w6v8ASLaosBZ5coTjiCmIXgZnbZNDkAxZP3vrBF5fV/dgAkgAMm0Dq8418N5l/n8x3hnwMPA3D0k8C4/wP4loMHTISjxkOhgBFSkb9s2VW/yYEVAnUfgQPIzO34k3jwg81cB9vdaEiIIRFxilL51l1xRujyP3i/QdIcKYblE2nkO0/adp+07T9B2ngu0X20qzGFyBAfPy4So4IhxZI7f4BCpyGStLlgIEsnToQIQYNCITA1U4HaVAjDbGZwyYc5fAh6JLp3aUDoDm/MOO649MaYdZOQCbjnHSv0sIQ50AIgLDzXGqjyGKvrofv0PC64dYIPWtBwlkmBbW9Bt8H1SbtuEIhSAFABgLgMD0oatwqIAAr5e0d5fyeH5gDy7Tw/SD6YApUZMAAFBCKBUk2RkIKa3oOfmJQzDDVQ9kpHRjqST0x3ogICAsAtjnHsO1AOY+seHZ8H0PC64dVB6zdyWuFwhmROOpcNIvtp+KiOygAAAAAsBgGrEIuYT/AFdoPx+08IdoSfV2jXb7QAjhBVDywEMiRckJ+Vn5uHqMCCUMZSmdWJExhNk8bsnjdkKkjAN0PCP0QEXAm2D7LsifJ8R+IUZljh6Au8wQzr7Qec/kAxOd4tB6Pvs5bZVUjqRBiO+e0f3T2n7B7QfentPPPaNQwWbny/51PUAh1h2jfsgF9k8kzyTPBMPDUASyov8AsmTaLiIRHcn7M/R+5+h9z9CHeP3I0h2aJlWjrQek9FAoOMzFooMwNqCByzKWlamAHQgBSamtTNX0pWsqroO8ARpkilGPkmHj5lBoCgIRHGA5JJF1locgdcAHvDNQKEoYrtAIoMCASsM/gowmhCE3YAOcAAyTlCOgTLLhcWBg6xhsyBqGpgMtGNFqig7AtJXBhsTotxwDSB2Lh6MENCP+U1tjSYHCV9fhlNy8N0Gh8N0QLQFIBcdtkKEOdfqGnxSpoe6vH5ivIAojbiHyYEh2WiHCWREtP4B3jAI2Al3sVb1CfeA3EoZXf2aHV+bgw1GwyZrCEt0ruXsyguYkhYgqBFMHcYp+4BYgGbQB1YIgQhhowmSoomzZRfvALVSBUBkyvDcCVRxntz1Rq6DCTIbMEpTzgCA01cOgdK4fuCGiNcuV/mJKOSgEIxkYlkLgQW+ZrBEYFgBtqTxu6tOcXKAN5rnNBmiu+ohNKpVfOK6yUqtFB3W7nX5ihlo1Woye0rOEAWqqA4AlxgH8CACWIzyTO0zc1p7mGnQaamRlgjLQhiFYn+IhnI4D2gaAEHK27+2BzvWMpSx0kOp6xk7oGoAx/iVFYEVTCQ/4EEAHHgQPQtgLQLhdYrKGIYEEuucAMLoyRTLnBXgUgMbF0g0Io1tiBHVB/wAIv+Ll/wCgccf/AAM/eC2wcBs5TPE4i2xnsZw45jAQbecyOznBsGZnDPHSa7P/xAAoEAEAAgIBBAICAwADAQAAAAABABEhMUFRYXGBEJGhscHR8CDh8TD/2gAIAQEAAT8Qp4ldYfuc2Sw5+DtKmJczucWJPU41ieOI71OeZd4Ll4i9PxOcTvXx/E18ZJiZeZxMamOsxDfFS+m/jepTmnMrPGJnpmPj45nG5zO7hnabZuV0z8c4lw6189b+p2Xc5xucXLzjUaufie4clzHE2zJ8XwkNVL7THMb6yr5i56T9TbueCPQzOd/PFcsvj1DE/cxWX3G428qx6k1ucXOvxzPGYzxxO1z9zRN+ZVFSjExqp3SDFqUEzWZue/i++fjPUqdgJxncy8ym+JjONR6T3ie/M8uIb6TPSU3ghuuZ2IYaqV6muIYxuZnr3DU/ULvc7cX8Z1+ZjhlmJx8YnTOJrFb6z2T3OcpAAq7+PcpPjU8Trj3OMsqtsM+ZwPxbC+0qePjzDpr4rM2OprpBucbjr426mT+pjUd5jco1MnErGOJV4qBe5f8Aqgd6qZqaOJolXxnzOZfbHMO2JWJxjxKqZ+PUtmE6z6nG5fM7Jj43plxlMprfwyw2zmcbnZfr4zeEnnc71P8AXNTEo5n8TeZi6fg1vX/Dvqe8/HPxiZeJUveJ9THWprN4iHMo3cOrONEdZZtmsxrBcd9o6hwyKFWroHMpWbFh4dYK6lYgR8x0xI9iX8V0lTpKvMAmlooCHq1tDBMsTtLzN4nuX0ZjMY6tKPIsva/yeZ1/8neI0qkCPemX7j2nFR71C2VfEQCAWUelucH+zzMGf8neIE2kCPelqZmb+e1TxiZh92UKANq8Sri/z1h/uf3FgMmgLV+49ybl1zO9V3mDpGqy/GuPc1KJxTqc6necVx8eGN2AKnFN3+ZQR4Xd3BWwlXtld4zHeVvwcxl8nF2fAzKgg+H85hiAe/8AXDHecfpQD8fu2+EwxUSvbXw6ZuI8dYXX8QDtUKeGvzDO3EsVLVvdcfip7l3r49y+vMC0sA30B/CUVo+pR0PqYMwDdBt91kZYanifmeZa8VdhcT67CzVuDwFHqU6Eo6H1NRVUeAh1DrUzK+/jG5zd5l3jI3rb2YXtRyynQ+pQ8H1Cajxd5oQMzU9TqqTOZmdk+We1TX/c9fF9vi3A21eB/iCBKg2AWB1o3PxOIdAFu/Adeg/cD5sBwjoNB3lrPzuvK5mEzfwX1iBHhAR9MOSBm2/jp+oc/wC7g9HeGJgWBsSW7hPDpWplI1oLbfbEBgYAquk7TnbMf+zWggXUd9VzPd/KHCgbEbGN8VQD0A+x9MrPE1xOSUQ6Nr46W/zT6f8AhaHM+1/M2axLwX+ZrdEuglmPhRZBrwbT2P1zEbtRtRtX4J+N/c0I3uvi/jzmf65jtM1vErzLnHWa43L6z+ZcM/AJX31iUpN38nY2x7b1o3V7OCXVHEqNmdQn5aMUwOJvLvbVa88wLxGucyr4buj0epL68oX1X0eIsctQpRJrz1h0p+KldppgLy+gsVBtavb/AMNCImuiAvNH2ldprSURwW0G7eJaH+C0fbb7/wCFnNGU84YSZeJm5fSY6MTulCgC1Y9WxbxO3u7friX8EN2dP7mnadtx1P3M1thZ0iSuD4x/mczNzTrU1zNaIGKmDLWzLuWiVlVrke3H1CSUwcBxLSBN3PmJ7m3hPIY6KVbT1y6lE31JhrI9khDRUWvZx6h1TuOS7O8aNQA0sRtvv0xFf6lz7wwOsNTl8VmJ1ldCY+/gE2rQ97h+War/AIPXjE6DfsWe4NvraBZO8O0X2sQRkeLfj/itvRa8J/KEo5nqbjcs88FO4eBt70cS4SkR1qWgDzNb7qsKZPUJ+D/cGOJxuVe6mZg3/wCz3DpKmTUx1/E3e/g6k3hLmo3WIM5mf0qtWnB0YlKKlJhjKUZm35C9gt/L+IkpZLg+1+txzrMNM3SdzsRyicCRX2xiBTo776TePQNDhJm6tIcrS+v5gQ1hYXZhwvUSynAPEVcMwy5ZjEG9h1gVHH/UWbbuZvDLdyL6X6j/AMCFndA7VU+qPZLeLg2VK2/bA4al+sejK/4KA1ZPat/iND4ZfEDsx9x7i5nDyzpb7oikyLWpbV7yowVXRuw+Bo728SrTMmPh/uGSFBLgjMwc1c3/ABMHmZSpnrFdfBcZhlAbi4qBfWJWXP2DAXctfaNpaBiUtBBA9hbDpfEtobJ45/Fwc5jUwPHoD8Ta15bYUpLFicCdMwHgBF9CfdQLxcUlgdjFoBuWSF1WyZTdS2lFk83/AHGzl+5m5Y4+KrxOz8HUaae91A7+LG6L9g/YHuIXAojsTZ8Oz9gtdvhp9SqlPKIL4fYgj52R2ja/bLjmqKcFr2oe4lCtI+vhV1Jj0puADwfYuDnTCD8QXwH8ywJ8x1a8uXu/B4UB+J0d3R/1Cg7CwBQEFT+Z/ldZppnfEMcMDv3h5jOxMXWZqtsp2m+fMMXc43BBp0At97hRY2OniAvnUcAF+QjmrfFcQXV8gF2MzrK9cZv+YCQUzWDkhVma2HvUWuiCeBwv5iFxlWVoj+79Qb0wwlBToNrFQiJe7f1KMUrDAKaFLYhRvmJhB2YbQo5eYEz9yIdDyi4OCZESIniba1HgPTI/U8VHpOri30/AIVQY7ciMPXLwmBOP5Ps+LI1TPuIYfdH2zmPxj5G/L6jBcR2woWMlgfdn0SvhCrezPhMJ2gAP8oZfM3xNtr7sF+R+3iXD9DKtRoCOcTC810fQe3mOEd/D/hf3LJjmU71HxLJ2nbpPM4rMxKdfxLLC/Uy4tn5yGULX4jyjsLrsdDtAEIg3Wk7ae7mOKsgIGXukOGsMFu23YaqVU5XFN2Nt1HA2DisrpMMI2OEo/Ut6yvwujoLv1uW5X3mArNR0F/4x3cV2rPgxNtGu5XlyvaVGbqd913YNBYs5Wl9fzBviPSWX6NfcZerdGq5b3xExi/10jSoQotfK1mO/twuAcIzZW9E4VjoUtFq+ZQwZmNDj1U5S+8VtNKncC/hcBRuh0qk/iZVrMbVg/VMblQtLtzBG3uj6jFoOpwY9APgKWsvQufQt9TtkaQKIQgUY3+G/nLmvEU/wlHELEyad6/4Dv4ipRVbVbVhllTgWA26f3D29JgSwcw1X8YWr/TBoeIMe03tlfcDhZ6q/iypmDp+J7iESilaTkjzxzQB0sGz6jUuxxDGg6GYBcfd3ujZ1L1HfllqaLqCQVBgsEqtRVG6Mo3Kndm5EshS1iI2f0urhbUprCjThJcZfVtgQXnmCrKRwjRRACA2Bh8PMvREeHudq/NQU7l6VYTeWHt/UfhbIYq5VIOXgaYqdBNRBw2AvheogHSXTHdQMTllxYA7gUwk52wVb+pWPEa5xt+r/ACfKIYxnsL93BOtuLsKT8y3m2V5V7RL/AOAbyU9C16oRxXEbjh/Y+CON36EafuWKqbTXToFB2y/cqYhiNVYAoAqKn+j6lP8AU/qIG9uE5fhATCNkXovAfxDkQyiAEdd2XjNZlbmuI6qa4niDZzLdZlKBmmd5jrCo3uU3Mc//ALovq/qM9lguDpHhx4ZdsQq4d/5T3EgEKRLE6RksXsrxevUUiMR693J2Y88NLVQq88wMRejILu+7tGFW1Qo8dI5PK0ZfJcw6gN1yuA7sD+bMkeDBofxGBEQOHpn4+nOcXKtmjmMuOuYYmQPPRP5v5tyj3OZ8BwMbzqWt9U9Ed/LNlADauiMwCxnOb8mvUcz/AMEG/kN5zi9Bf+4mJ+F/+IEQthiOSVjvMEK1UzVXNf8ActvcsvmaKJz8fXwsscsCo/2oQjun6jCr/RKIqZ0tGnuc9vEplXR46js7+4yqq9w1nXec4lYiRbdvHSm3saP+5gSsd+q92WQrEsp1iukej8B3nhhlJUqIorpc/iMNzBe/uH+USUvFinjIvsPuNWUibE2R+Aqk5zCHH8H0y34SmwlutvwuP0dvYfxM1h3F7wWgYFJT0n/rP+AAA4V/3oep2xuxTT8AgbUCKV+ZF1pQCIdCiKDGYXHGIZ0+5xUfM/c9v3K6TjMuHfE7Q6RqsFy0986r8C7c9oTvSOlIU/svtDmuRYhKDCOyO/ALtbF6cfcC3mWkrU13nOI4q0uvJZl+r+4X65chp737mtwquxOvAmvAuK2VluFuFlXmFYl1z9S+t5jFmhPoR2cqL5V/n4Wj1B/uMrNQC7eJQwzopCMbPsgz/J9Sl/z/AFFjEcYAw65Yroy8wwSyM/cP3H4ylwHpjO3EwmJecmGZqZ+5rZHBL5v9L4dJ/q4rqpn4uOJrvPOI6K3LOs9TL07Q67lPiX1hFG1hT5C9BrruH9tKzAsFgRrntE0H+XvHjNtcfSzWigECulxwur8eJf3LQcoTlGT2/UyyXmucOo5Wg5czVh3LkJiCAvRKiQy6AURtHKpABVvywLMwItHncXGr/wDXMczqUVXQHFwwS6RdsWP8RS6lP3HMcN8jqIUV0nMqLYvtqGEwAdAxNbnuDXLFd3F9XHrefjOyFUbX2/InWvrn+CXc3uVzLl9Z6jiMf8GUrMpm6P3NKl8Svh78Qd1K7Rwa+PqVfSdcRxN7iq5Zb5vUi5x1mST07CovgLvMuWf4e0Vw/wCntDiX+ekLA1AoDoQyw4gDAlF3nBRzNJ9swb+6dn9slsfbMWX2THKstqa0E8zF0Rd5k5QiX2kP8F+o8Z/46S58r4nNicLn9Qu/VNNHQbzGoYl4Jx6L1rOpXnH5g3V+WFt4yaAUL7Jyxue5zqOpffmO5qip4nMsuBlgCJgeGJcxCb+WBHZK2SFFg2kBCOfmvjcYg2lQrppEaF2+YOpgC023AopmPfxiZ61Pdzzpms5nj3Mf+p5fiuhXaabvLCPDczGfzKYNNSrMM9MCnldVAP7p01AdyfJZAj1Ev/exzkMGCNUIt7QzzPcunvDdc/HaoIlHEX7nnNzFZ1POogYmpzuL3lfHnHx4uVDEqtExqVcqiXPP3K4njcJV6md1LvcqtNQRjRzNUdY4w/HPWa4n5YeH49JiU6/xMeP4mukxUzieWbm7GXXFTte4AxblVhEazpjqf6+J/TX9Zi/z/E/0/wBZ/wCD/WBFvmgrC3WYI6svhd/Hth3jiampfuNdZdq8TErGdTF43LqOd8zWZz3+DXuc6zMc/C/6obwfG8SxuXc/2ZmVmcdLmrm53hF7TmFfDU1xO9Ts5uepmdlnMx0i9My4dnxM5KnXE7XO1Z3L4tygG7D3TXNQJj0n+4r/AEP7h/0mP/BwXU/W/uFR0gA86Dm9VEvjtBO8V+4ZdwKL5g9iwEtLu06kvM0CERVfCMiZqEi6wp0YeCEBpBLL75lxyoCUgFF9WFbAzbuDe64+ocjopYlAAeWWDI6ZIP71L5Glq3Ec1gjYNNPCN9ljPdBlCZc1pvJ1I/TUQeyIWm8kGu1x66QG1xZ/OoRBBHAFsrfCjVpYlLiblf1ZVd9AOWCfcKGZS1j+XIYBtWNdhD/bf4gCzBcHTHxZi1Lot1faCHC8gDdcMybNQzR07y+kNKMFP4miLWCoCBaHLHP1LMIiQrmgCKVDnsxxzMuHKdY7/qHzrRUqjr8Y6fiVXT3KeZm9R1UwHQOkM4zPwyu87W/FlaZvLGPC44jFZbzmsVKWJA5G4hvgOW0BpdYiU5ahSGdzIJupmsx8SsfHGIsfJGl2a7YDFY1suJu6wao+4mp4BzRX7mk9Ieip0oHNoH7KgdP2UOBrkoc8xBLBOiTDtr6LLr1QvlDVxoNzR4EAW1Y0vCCCo6JmDjV6HQlQNoEcf9UJRoG4VIfF/cU8rmti6voCAdpaF1Uxbl+2E24OgWwV8L6OsrnWHgDVnNP6lXkZTYxtrTt7b/xEPaCnK4una58ZiYIlCkvrC+1idWI0+aqZQw4SC7tNeQ3L2FwDGsfxCAI8oA1V9233BDNVVWWLfVymGFH7F/gYhgEV5S/5lrQX6AQOOyxaU0b0h6jrbfaBT+RgrTIrTregQ3QIUXEzXnPqXeV3K6P18P4miZ+K/wBcvsTHx9+Jj1NdZa56TtPcxCF1F5hMHGz2OTsyxmOEO48+GZqwJaeX6a8wEV1TAdgmXxHoEyxOziVFriBLEcqwC5CNxgyAK1Zyy7S4ONDDQgi2lCZwCWl40bY3KhawS2oR2YfuN8SratNVlzXEBjctwnAb0DW4O8fShSAvjMCj4A2JazEF4ysR2ZHS69ER9FqVg7jMEvlUF0t0c0kMFtMPQq0aOBGobtNPW8geQ1bEPPLCExldKK7d432zM0AgVvL1KrBnmCCAv4wmL7QDfC4IctICCncdICC4nFDq4z9ykKxRpxgt79CC+2WeFfqN2apg25qyu+yH4utRqsd6x2jS0pDQEG/MdrSHYJx1QmAiQUNFc5z6jM05lVcKXW5RrXByNmTyxIBoVsvNawETJUEKN4xssr6hfSF7qeZfV+KsmOrLlZ5qdtTeofida/c43MfGsjPNyr0T1O883Gobg/iOta1M3df9TVfqeIS+KwyublGmW8RbMzFztccG45ZeaGVPxMxySr2yqxOxKozmE/MrE1KeWVW5XeZ1c9/GuYdLjqvuUXdTmcW/mW6v4xzqZ4zP/ZmX0MvtKzr4xxOCVjOZ3GVe7lZq4W9Z3SUdZ/syvjAYnOodckuYqvzBxPL8H38Y0GZ5lcSvjPabNfHNTCT3MGvmunxTdY+Pcx1mszE5ub9Tc9wmp74lbalVi5zMVidpV3iZvVTHUnmeLn3MdZm6SUnqe5UN6n16lHLOI1dzEz3g56zvMz+Jmeor6lQZfSIVN953nWXmPMu3cHoylX1jjllJdZlzxO2pfUniX1m8Q3OJ4ls69YvXzPM73LN/qdxg5+LxOZr49zzOkuZjLOvyRo8R5jqbeiczlHmcnmHEeZ/Kc4ahxN2PE5fL8XEdTrDaOzxHcOI7eJt6juHMfmafBr38GiOnzDnyR08x+A48xjzH9ps+48R0R5+BB0+Ia+oc+Zy+Y68pz5Tkn9x3OJ//2Q==" alt="M4 Elétrica & Solar" />
+        </div>
+        <div class="proposal-tag">Proposta comercial fotovoltaica</div>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <h1>Orçamento do Sistema Solar Fotovoltaico</h1>
+          <p>
+            Solução dimensionada para quatro unidades consumidoras, com geração estimada de
+            1.135,51 kWh por mês e distribuição de créditos para reduzir o consumo faturado.
+          </p>
+        </div>
+        <div class="hero-price">
+          <small>Investimento total</small>
+          <strong>R$ 41.066,62</strong>
+          <span>Instalação e frete incluídos no orçamento.</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Resumo da proposta</div>
+            <h2>Visão geral do sistema</h2>
+          </div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric">
+            <span class="label">Potência instalada</span>
+            <span class="value">10,37 kWp</span>
+            <span class="sub">17 módulos fotovoltaicos de 610 W</span>
+          </div>
+          <div class="metric">
+            <span class="label">Produção mensal estimada</span>
+            <span class="value">1.135,51 kWh</span>
+            <span class="sub">13.626,17 kWh de produção anual</span>
+          </div>
+          <div class="metric">
+            <span class="label">Consumo das 4 unidades</span>
+            <span class="value">2.095,00 kWh</span>
+            <span class="sub">Consumo mensal consolidado</span>
+          </div>
+          <div class="metric highlight">
+            <span class="label">Economia estimada</span>
+            <span class="value">R$ 1.021,96/mês</span>
+            <span class="sub">R$ 12.263,55 por ano</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Balanço energético</div>
+            <h2>Produção, déficit e distribuição dos créditos</h2>
+            <p class="section-note">
+              O sistema produz parte da energia consumida pelo conjunto das unidades. A parcela não atendida pela geração solar permanece como déficit fornecido pela concessionária.
+            </p>
+          </div>
+        </div>
+
+        <div class="charts">
+          <div class="chart-card">
+            <div class="chart-title">Produção solar x déficit mensal</div>
+            <div class="chart-sub">Comparação com o consumo total de 2.095,00 kWh/mês</div>
+            <div class="chart-content">
+              <div class="donut production-donut">
+                <div class="donut-center"><strong>54,2%</strong><span>cobertura solar</span></div>
+              </div>
+              <div class="legend">
+                <div class="legend-item">
+                  <span class="swatch" style="background:#10a8d8"></span>
+                  <span><b>Produção solar</b><br>Energia gerada pelo sistema</span>
+                  <span class="amount">1.135,51 kWh</span>
+                </div>
+                <div class="legend-item">
+                  <span class="swatch" style="background:#d8e1e8"></span>
+                  <span><b>Déficit</b><br>Energia fornecida pela rede</span>
+                  <span class="amount">959,49 kWh</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-title">Rateio mensal dos créditos</div>
+            <div class="chart-sub">Distribuição sugerida do excedente de 685,51 kWh</div>
+            <div class="chart-content">
+              <div class="donut credit-donut">
+                <div class="donut-center"><strong>685,51</strong><span>kWh em créditos</span></div>
+              </div>
+              <div class="legend">
+                <div class="legend-item">
+                  <span class="swatch" style="background:#21b5df"></span>
+                  <span><b>UC 1 — Residência</b></span>
+                  <span class="amount">5% · 34,28 kWh</span>
+                </div>
+                <div class="legend-item">
+                  <span class="swatch" style="background:#087fbd"></span>
+                  <span><b>UC 2 — Empresa</b></span>
+                  <span class="amount">45% · 308,48 kWh</span>
+                </div>
+                <div class="legend-item">
+                  <span class="swatch" style="background:#67d5ee"></span>
+                  <span><b>UC 3 — Empresa</b></span>
+                  <span class="amount">20% · 137,10 kWh</span>
+                </div>
+                <div class="legend-item">
+                  <span class="swatch" style="background:#0b2846"></span>
+                  <span><b>UC 4 — Empresa</b></span>
+                  <span class="amount">30% · 205,65 kWh</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Economia por unidade consumidora</div>
+            <h2>Estimativa das faturas mensais</h2>
+            <p class="section-note">
+              Cálculo realizado com tarifa de <strong>R$ 1,05 por kWh</strong>, comparando o consumo mensal com o consumo após a aplicação dos créditos sugeridos.
+            </p>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Unidade consumidora</th>
+                <th>Consumo mensal</th>
+                <th>Consumo com crédito</th>
+                <th>Fatura sem créditos</th>
+                <th>Fatura estimada com créditos</th>
+                <th>Economia mensal</th>
+                <th>Economia anual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>UC 1 — Residência</td>
+                <td>450,00 kWh</td>
+                <td>415,72 kWh</td>
+                <td>R$ 472,50</td>
+                <td class="money-after">R$ 436,51</td>
+                <td class="saving">R$ 35,99</td>
+                <td class="saving">R$ 431,87</td>
+              </tr>
+              <tr>
+                <td>UC 2 — Empresa</td>
+                <td>800,00 kWh</td>
+                <td>491,52 kWh</td>
+                <td>R$ 840,00</td>
+                <td class="money-after">R$ 516,10</td>
+                <td class="saving">R$ 323,90</td>
+                <td class="saving">R$ 3.886,84</td>
+              </tr>
+              <tr>
+                <td>UC 3 — Empresa</td>
+                <td>300,00 kWh</td>
+                <td>162,90 kWh</td>
+                <td>R$ 315,00</td>
+                <td class="money-after">R$ 171,04</td>
+                <td class="saving">R$ 143,96</td>
+                <td class="saving">R$ 1.727,49</td>
+              </tr>
+              <tr>
+                <td>UC 4 — Empresa</td>
+                <td>545,00 kWh</td>
+                <td>339,35 kWh</td>
+                <td>R$ 572,25</td>
+                <td class="money-after">R$ 356,31</td>
+                <td class="saving">R$ 215,94</td>
+                <td class="saving">R$ 2.591,23</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Resultado global estimado</td>
+                <td>2.095,00 kWh</td>
+                <td>—</td>
+                <td>R$ 2.199,75</td>
+                <td>R$ 1.177,79</td>
+                <td>R$ 1.021,96</td>
+                <td>R$ 12.263,55</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <p class="section-note" style="margin-top:10px;">
+          Os valores individuais apresentam a simulação por unidade consumidora. O resultado global corrigido do orçamento considera economia de <strong>R$ 1.021,96 por mês</strong> e <strong>R$ 12.263,55 por ano</strong>.
+        </p>
+
+        <div class="savings-band">
+          <div class="big-saving">
+            <div class="saving-block">
+              <small>Economia total estimada por mês</small>
+              <strong>R$ 1.021,96</strong>
+            </div>
+            <div class="saving-block">
+              <small>Economia total estimada por ano</small>
+              <strong>R$ 12.263,55</strong>
+            </div>
+          </div>
+          <div class="explain-card">
+            <strong>Redução econômica estimada: 46,5%</strong>
+            <p>
+              A fatura consolidada estimada passa de R$ 2.199,75 para aproximadamente R$ 1.177,79 ao mês, considerando a economia global corrigida do sistema.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Orçamento</div>
+            <h2>Composição comercial do sistema</h2>
+          </div>
+        </div>
+
+        <div class="budget-grid">
+          <div class="budget-card">
+            <div class="budget-price">
+              <span>Valor total do sistema fotovoltaico</span>
+              <strong>R$ 41.066,62</strong>
+            </div>
+            <div class="budget-details">
+              <div class="detail"><small>Capacidade instalada</small><b>10,37 kWp</b></div>
+              <div class="detail"><small>Quantidade de módulos</small><b>17 unidades</b></div>
+              <div class="detail"><small>Área estimada</small><b>45,90 m²</b></div>
+              <div class="detail"><small>Peso estimado</small><b>6,9 kg/m²</b></div>
+              <div class="detail"><small>Instalação</small><b>Incluída</b></div>
+              <div class="detail"><small>Frete</small><b>Incluído</b></div>
+            </div>
+          </div>
+
+          <div class="scope-card">
+            <div class="chart-title">Itens e serviços incluídos</div>
+            <ul class="scope-list">
+              <li>17 módulos bifaciais N-Type de 610 W</li>
+              <li>Inversor trifásico Deye 15 kW — 220 V</li>
+              <li>Estrutura de fixação em alumínio</li>
+              <li>Cabos solares e conectores MC4</li>
+              <li>Sistema de monitoramento</li>
+              <li>Projeto fotovoltaico</li>
+              <li>Mão de obra de instalação</li>
+              <li>Liberação junto à concessionária</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="notice">
+          <b>Observação sobre a estimativa das faturas:</b>
+          os valores apresentados consideram apenas a multiplicação do consumo em kWh pela tarifa de R$ 1,05/kWh. A conta real pode incluir custo de disponibilidade, iluminação pública, impostos, bandeiras tarifárias e outros encargos da distribuidora.
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><strong>M4 Instalações Elétricas e Solar Ltda.</strong><br>Energia solar, instalações e soluções elétricas.</div>
+      <div class="footer-brand">M4 ELÉTRICA &amp; SOLAR</div>
+    </footer>
+  </article>
+</body>
+</html>
